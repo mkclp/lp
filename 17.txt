@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class Optimal_PageReplacement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of frames: ");
+        int frames = sc.nextInt();
+
+        System.out.print("Enter number of pages: ");
+        int n = sc.nextInt();
+
+        int[] pages = new int[n];
+        System.out.println("Enter page reference string:");
+        for (int i = 0; i < n; i++)
+            pages[i] = sc.nextInt();
+
+        ArrayList<Integer> memory = new ArrayList<>();
+        int pageFaults = 0;
+
+        for (int i = 0; i < n; i++) {
+            int page = pages[i];
+
+            if (!memory.contains(page)) {
+                if (memory.size() == frames) {
+                    int indexToReplace = findOptimalIndex(memory, pages, i + 1);
+                    memory.set(indexToReplace, page);
+                } else {
+                    memory.add(page);
+                }
+                pageFaults++;
+            }
+            System.out.println("Frames: " + memory);
+        }
+
+        System.out.println("\nTotal Page Faults: " + pageFaults);
+        sc.close();
+    }
+
+    static int findOptimalIndex(ArrayList<Integer> memory, int[] pages, int start) {
+        int farthest = start, replaceIndex = 0;
+        for (int i = 0; i < memory.size(); i++) {
+            int page = memory.get(i);
+            int j;
+            for (j = start; j < pages.length; j++) {
+                if (pages[j] == page) break;
+            }
+            if (j == pages.length) return i; 
+            if (j > farthest) {
+                farthest = j;
+                replaceIndex = i;
+            }
+        }
+        return replaceIndex;
+    }
+}
