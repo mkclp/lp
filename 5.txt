@@ -1,0 +1,95 @@
+import java.util.*;
+
+class FCFS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of processes: ");
+        int n = sc.nextInt();
+
+        int[] at = new int[n], bt = new int[n], ct = new int[n], tat = new int[n], wt = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Arrival and Burst time for P" + (i + 1) + ": ");
+            at[i] = sc.nextInt();
+            bt[i] = sc.nextInt();
+        }
+
+        
+        for (int i = 0; i < n - 1; i++)
+            for (int j = i + 1; j < n; j++)
+                if (at[i] > at[j]) {
+                    int temp = at[i]; at[i] = at[j]; at[j] = temp;
+                    temp = bt[i]; bt[i] = bt[j]; bt[j] = temp;
+                }
+
+        int time = 0;
+        for (int i = 0; i < n; i++) {
+            if (time < at[i]) time = at[i];
+            ct[i] = time + bt[i];
+            tat[i] = ct[i] - at[i];
+            wt[i] = tat[i] - bt[i];
+            time = ct[i];
+        }
+
+        System.out.println("\nPID\tAT\tBT\tCT\tTAT\tWT");
+        for (int i = 0; i < n; i++)
+            System.out.println("P" + (i + 1) + "\t" + at[i] + "\t" + bt[i] + "\t" + ct[i] + "\t" + tat[i] + "\t" + wt[i]);
+
+        sc.close();
+    }
+}
+
+import java.util.*;
+
+public class SJF_Preemptive {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of processes: ");
+        int n = sc.nextInt();
+
+        int[] at = new int[n], bt = new int[n], rem = new int[n], wt = new int[n], tat = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Arrival and Burst time for P" + (i + 1) + ": ");
+            at[i] = sc.nextInt();
+            bt[i] = sc.nextInt();
+            rem[i] = bt[i];
+        }
+
+        int complete = 0, time = 0, minIndex = -1, min = Integer.MAX_VALUE;
+        boolean found;
+
+        while (complete != n) {
+            found = false;
+            for (int i = 0; i < n; i++) {
+                if (at[i] <= time && rem[i] > 0 && rem[i] < min) {
+                    min = rem[i];
+                    minIndex = i;
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                time++;
+                continue;
+            }
+
+            rem[minIndex]--;
+            min = rem[minIndex];
+            if (min == 0) min = Integer.MAX_VALUE;
+
+            if (rem[minIndex] == 0) {
+                complete++;
+                int finish = time + 1;
+                tat[minIndex] = finish - at[minIndex];
+                wt[minIndex] = tat[minIndex] - bt[minIndex];
+            }
+            time++;
+        }
+
+        System.out.println("\nPID\tAT\tBT\tTAT\tWT");
+        for (int i = 0; i < n; i++)
+            System.out.println("P" + (i + 1) + "\t" + at[i] + "\t" + bt[i] + "\t" + tat[i] + "\t" + wt[i]);
+
+        sc.close();
+    }
+}
+
