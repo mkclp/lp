@@ -1,0 +1,12 @@
+| Task ID | Task Name            | Duration | Start Date  | End Date    |
+| ------- | -------------------- | -------- | ----------- | ----------- |
+| T1      | Requirement Analysis | 7 days   | 01-Dec-2025 | 07-Dec-2025 |
+| T2      | System Design        | 10 days  | 08-Dec-2025 | 17-Dec-2025 |
+| T3      | Database Design      | 7 days   | 18-Dec-2025 | 24-Dec-2025 |
+| T4      | Frontend Development | 15 days  | 26-Dec-2025 | 10-Jan-2026 |
+| T5      | Backend Development  | 15 days  | 11-Jan-2026 | 25-Jan-2026 |
+| T6      | Integration          | 10 days  | 26-Jan-2026 | 04-Feb-2026 |
+| T7      | Testing              | 10 days  | 05-Feb-2026 | 14-Feb-2026 |
+| T8      | Deployment           | 5 days   | 15-Feb-2026 | 19-Feb-2026 |
+| T9      | Documentation        | 7 days   | 20-Feb-2026 | 26-Feb-2026 |
+| T10     | Final Review         | 3 days   | 27-Feb-2026 | 01-Mar-2026 |
