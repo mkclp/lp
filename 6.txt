@@ -1,0 +1,81 @@
+import java.util.*;
+
+class FCFS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of processes: ");
+        int n = sc.nextInt();
+
+        int[] at = new int[n], bt = new int[n], ct = new int[n], tat = new int[n], wt = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Arrival and Burst time for P" + (i + 1) + ": ");
+            at[i] = sc.nextInt();
+            bt[i] = sc.nextInt();
+        }
+
+        
+        for (int i = 0; i < n - 1; i++)
+            for (int j = i + 1; j < n; j++)
+                if (at[i] > at[j]) {
+                    int temp = at[i]; at[i] = at[j]; at[j] = temp;
+                    temp = bt[i]; bt[i] = bt[j]; bt[j] = temp;
+                }
+
+        int time = 0;
+        for (int i = 0; i < n; i++) {
+            if (time < at[i]) time = at[i];
+            ct[i] = time + bt[i];
+            tat[i] = ct[i] - at[i];
+            wt[i] = tat[i] - bt[i];
+            time = ct[i];
+        }
+
+        System.out.println("\nPID\tAT\tBT\tCT\tTAT\tWT");
+        for (int i = 0; i < n; i++)
+            System.out.println("P" + (i + 1) + "\t" + at[i] + "\t" + bt[i] + "\t" + ct[i] + "\t" + tat[i] + "\t" + wt[i]);
+
+        sc.close();
+    }
+}
+
+import java.util.*;
+
+public class Priority_Scheduling {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of processes: ");
+        int n = sc.nextInt();
+
+        int[] at = new int[n], bt = new int[n], pr = new int[n], ct = new int[n], tat = new int[n], wt = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Arrival, Burst, and Priority for P" + (i + 1) + ": ");
+            at[i] = sc.nextInt();
+            bt[i] = sc.nextInt();
+            pr[i] = sc.nextInt();
+        }
+
+        
+        for (int i = 0; i < n - 1; i++)
+            for (int j = i + 1; j < n; j++)
+                if (pr[i] > pr[j]) {
+                    int t = pr[i]; pr[i] = pr[j]; pr[j] = t;
+                    t = bt[i]; bt[i] = bt[j]; bt[j] = t;
+                    t = at[i]; at[i] = at[j]; at[j] = t;
+                }
+
+        int time = 0;
+        for (int i = 0; i < n; i++) {
+            if (time < at[i]) time = at[i];
+            ct[i] = time + bt[i];
+            tat[i] = ct[i] - at[i];
+            wt[i] = tat[i] - bt[i];
+            time = ct[i];
+        }
+
+        System.out.println("\nPID\tAT\tBT\tPR\tCT\tTAT\tWT");
+        for (int i = 0; i < n; i++)
+            System.out.println("P" + (i + 1) + "\t" + at[i] + "\t" + bt[i] + "\t" + pr[i] + "\t" + ct[i] + "\t" + tat[i] + "\t" + wt[i]);
+
+        sc.close();
+    }
+}
