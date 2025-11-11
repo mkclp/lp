@@ -10,3 +10,17 @@
 | T8      | Deployment           | 5 days   | 15-Feb-2026 | 19-Feb-2026 |
 | T9      | Documentation        | 7 days   | 20-Feb-2026 | 26-Feb-2026 |
 | T10     | Final Review         | 3 days   | 27-Feb-2026 | 01-Mar-2026 |
+
+
+| Resource Name       | Resource Type | Role                                  |
+| ------------------- | ------------- | ------------------------------------- |
+| Project Manager     | Human         | Manage and plan project               |
+| System Analyst      | Human         | Gather requirements                   |
+| UI Designer         | Human         | Create user interface                 |
+| Database Engineer   | Human         | Design and maintain DB                |
+| Backend Developer   | Human         | Handle server-side logic              |
+| Tester              | Human         | Test system functionality             |
+| Deployment Engineer | Human         | Deploy system                         |
+| Computer System     | Hardware      | Development and testing               |
+| Database Server     | Hardware      | Data storage                          |
+| Software Tools      | Software      | VS Code, MySQL, GitHub, Tomcat Server |
