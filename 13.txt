@@ -1,0 +1,119 @@
+import java.io.*;
+
+class FirstFitAllocation {
+    public static void main(String args[]) throws IOException {
+        int[] flag = new int[10];
+        int[] m_segments = new int[10];
+        int i, sr, memory;
+        int loc = -1;
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter the number of memory segments:");
+        memory = Integer.parseInt(in.readLine());
+
+        System.out.println("Enter the size of each memory segment:");
+        for (i = 0; i < memory; i++) {
+            m_segments[i] = Integer.parseInt(in.readLine());
+            flag[i] = 0; 
+        }
+
+        System.out.println("\nBefore First Fit Allocation:");
+        System.out.println("Index\tMemory Segment");
+        for (i = 0; i < memory; i++) {
+            System.out.println((i + 1) + "\t" + m_segments[i]);
+        }
+
+        System.out.println("\nEnter the space requirement for the new process:");
+        sr = Integer.parseInt(in.readLine());
+
+        
+        for (i = 0; i < memory; i++) {
+            if (flag[i] == 0 && m_segments[i] >= sr) {
+                loc = i; 
+                break;   
+            }
+        }
+
+        if (loc == -1) {
+            System.out.println("\nSpace not available");
+        } else {
+            m_segments[loc] -= sr;  
+            flag[loc] = 1; // mark allocated
+        }
+
+        System.out.println("\nAfter First Fit Allocation:");
+        System.out.println("Index\tMemory Segment");
+        for (i = 0; i < memory; i++) {
+            System.out.println((i + 1) + "\t" + m_segments[i]);
+        }
+
+        if (loc != -1) {
+            System.out.println("\nThe process allocated to the memory segment " + (loc + 1));
+        }
+    }
+}
+
+import java.io.*;
+
+class NextFitAllocation {
+    public static void main(String args[]) throws IOException {
+        int[] flag = new int[10];
+        int[] m_segments = new int[10];
+        int i, sr, memory;
+        int loc = -1;
+        int lastPos = 0; 
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter the number of memory segments:");
+        memory = Integer.parseInt(in.readLine());
+
+        System.out.println("Enter the size of each memory segment:");
+        for (i = 0; i < memory; i++) {
+            m_segments[i] = Integer.parseInt(in.readLine());
+            flag[i] = 0; 
+        }
+
+        System.out.println("\nBefore Next Fit Allocation:");
+        System.out.println("Index\tMemory Segment");
+        for (i = 0; i < memory; i++) {
+            System.out.println((i + 1) + "\t" + m_segments[i]);
+        }
+
+        System.out.println("\nEnter the space requirement for the new process:");
+        sr = Integer.parseInt(in.readLine());
+
+        
+        int start = lastPos;
+        boolean allocated = false;
+
+        for (i = 0; i < memory; i++) {
+            int index = (start + i) % memory; 
+            if (flag[index] == 0 && m_segments[index] >= sr) {
+                loc = index;
+                allocated = true;
+                lastPos = (index + 1) % memory; 
+                break;
+            }
+        }
+
+        if (!allocated) {
+            System.out.println("\nSpace not available");
+        } else {
+            m_segments[loc] -= sr;
+            flag[loc] = 1;
+        }
+
+        System.out.println("\nAfter Next Fit Allocation:");
+        System.out.println("Index\tMemory Segment");
+        for (i = 0; i < memory; i++) {
+            System.out.println((i + 1) + "\t" + m_segments[i]);
+        }
+
+        if (allocated) {
+            System.out.println("\nThe process allocated to the memory segment " + (loc + 1));
+            System.out.println("Next search will start from segment " + (lastPos + 1));
+        }
+    }
+}
