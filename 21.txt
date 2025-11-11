@@ -1,0 +1,21 @@
+| Sr. | Task Name            | Duration | % Complete | Start  | Finish |
+| --- | -------------------- | -------- | ---------- | ------ | ------ |
+| 1   | Requirement Analysis | 5 days   | 100%       | 1-Aug  | 5-Aug  |
+| 2   | System Design        | 6 days   | 90%        | 6-Aug  | 11-Aug |
+| 3   | Database Setup       | 7 days   | 80%        | 12-Aug | 18-Aug |
+| 4   | Interface Design     | 8 days   | 70%        | 19-Aug | 26-Aug |
+| 5   | Module Development   | 10 days  | 50%        | 27-Aug | 9-Sep  |
+| 6   | Integration          | 5 days   | 30%        | 10-Sep | 14-Sep |
+| 7   | Testing              | 6 days   | 10%        | 15-Sep | 20-Sep |
+| 8   | Deployment           | 4 days   | 0%         | 21-Sep | 24-Sep |
+| 9   | Project Review       | 3 days   | 0%         | 25-Sep | 27-Sep |
+
+
+| Resource Name | Type     | Role            | Standard Rate   |
+| ------------- | -------- | --------------- | --------------- |
+| Shreyash      | Work     | Project Manager | ₹500/hr         |
+| Raj           | Work     | Developer       | ₹400/hr         |
+| Om            | Work     | Database Admin  | ₹450/hr         |
+| Sai           | Work     | Tester          | ₹350/hr         |
+| Priya         | Work     | UI Designer     | ₹300/hr         |
+| Server        | Material | Hardware        | ₹50,000 (fixed) |
